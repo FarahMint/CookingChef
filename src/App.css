@@ -1,32 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+/* NAVBAR */
+
+.navbar-nav {
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.navbar-brand {
+  color: #f93f23 !important;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.navbar-brand a {
+  color: #f93f23;
+}
+.navbar-brand {
+  color: #f93f23;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.nav-item {
+  padding: 0.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* HOME */
+.showcase h1 {
+  font: bold 2.1875rem/2.875rem "Source Serif Pro", serif;
+  font-weight: 400;
+  color: #f1f2f2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.searchContainer {
+  display: grid;
+  grid-template-columns: 1.5rem 4fr 1fr;
+  width: 90%;
+  background-color: #f1f2f2;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.searchContainer:focus-within i {
+  display: none;
+}
+
+.searchContainer:focus-within .searchBox {
+  grid-column: 1/4;
+}
+
+.searchContainer:focus-within .searchBox::placeholder {
+  color: transparent;
+}
+
+.searchIcon {
+  padding: 0.5rem;
+  grid-row: 1;
+  grid-column: 1/2;
+  font-size: 1.5rem;
+  color: #ddd;
+  z-index: 2;
+}
+
+.searchBox {
+  border: 0;
+  padding: 0.5rem;
+  grid-column: 2/4;
+  grid-row: 1;
+  outline: none;
+}
+
+.searchButton {
+  background: #f93f23;
+  border: 0;
   color: white;
+  padding: 0.5rem;
+  border-radius: 0;
+  grid-column: 4/5;
+  grid-row: 1;
 }
 
-.App-link {
-  color: #61dafb;
+/* POSTLIST -- POST */
+
+.content a:nth-child(1) {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #2c2929;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sub__title {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #f93f23;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h4.card-title {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #444;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ingredients-card {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+i.fa-arrow-alt-circle-left {
+  font-size: 3rem;
+}
+
+i.fa-bookmark,
+i.fa-heart,
+i.fa-arrow-alt-circle-left {
+  color: #444;
+  transition: all 0.5s ease-out;
+  transform: scale(1);
+}
+
+i.fa-bookmark:hover,
+i.fa-heart:hover,
+i.fa-arrow-alt-circle-left:hover {
+  color: #f93f23;
+  transform: scale(1.2);
+}
+
+/* GALLERY */
+.gallery-item__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: all 1s linear;
+}
+
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item:hover .gallery-item__img {
+  opacity: 0.9;
+  transform: scale(1.2);
+  margin-top: 1.25rem;
+}
+
+.gallery-item__icon {
+  position: absolute;
+  color: rgb(249, 63, 35);
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  font-size: 4rem;
+  transition: all 0.5s ease-out;
+  transform: scale(0);
+}
+
+.gallery-item:hover .gallery-item__icon {
+  transform: scale(1.3) translate(-50%, -50%);
+}
+
+.gallery-item:hover .sub__title {
+  font-size: 1.25rem;
+  display: block;
+  margin-top: 1.25rem;
+}
+
+.gallery-item__icon:hover {
+  color: var(--brown);
+  cursor: pointer;
 }
