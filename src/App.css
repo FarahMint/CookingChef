@@ -68,15 +68,6 @@ body {
   color: transparent;
 }
 
-.searchIcon {
-  padding: 0.5rem;
-  grid-row: 1;
-  grid-column: 1/2;
-  font-size: 1.5rem;
-  color: #ddd;
-  z-index: 2;
-}
-
 .searchBox {
   border: 0;
   padding: 0.5rem;
@@ -188,4 +179,48 @@ i.fa-arrow-alt-circle-left:hover {
 .gallery-item__icon:hover {
   color: var(--brown);
   cursor: pointer;
+}
+
+/* auto complete */
+
+.searchBox {
+  width: 100%;
+  border: 1px solid rgb(206, 205, 205);
+  box-shadow: 5px 3px 2px 1px rgba(0, 0, 0, 0.7);
+  font-size: 1.25rem;
+}
+
+.searchBox input {
+  width: 100%;
+  border: none;
+  font-size: 1.25rem;
+  padding: 0.75rem 0.25rem;
+  border: 1px solid grey;
+  color: rgba(0, 0, 0, 0.73);
+  outline: none;
+}
+
+.suggestionBox {
+  /* padding: 0.5rem; */
+  grid-row: 2;
+  grid-column: 2;
+  /* font-size: 1.5rem;
+  color: #ddd; */
+  /* border: 2px solid red; */
+  z-index: 2;
+
+  list-style: none;
+  text-align: left;
+  border-top: grey;
+}
+/* .searchBox ul::before {
+  content: "";
+} */
+.searchBox li {
+  padding: 0.75rem 0.25rem;
+  cursor: pointer;
+}
+.searchBox li:hover {
+  text-decoration: underline;
+  background-color: rgba(128, 128, 128, 20);
 }

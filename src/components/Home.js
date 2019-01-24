@@ -1,16 +1,34 @@
 import React, { Component } from "react";
 import PostList from "./PostList";
+import Search from "./Search";
 import showcase from "../showcase.jpeg";
+import { recipeDetails } from "../tempDetails";
 import { recipes } from "../tempList";
 // import { Link } from "react-router-dom";
 
 class Home extends Component {
   state = {
-    posts: recipes
+    search: [],
+    posts: recipes,
+    details: recipeDetails
   };
 
+  // searchforIngredients = () => {
+  //   this.state.details.map(item => {
+  //     // console.log(item.ingredients);
+  //     const ingredients = item.ingredients;
+  //     // console.log(ingredients);
+  //     return ingredients.filter(i => {
+  //       // console.log(i);
+  //       return i;
+  //     });
+  //   });
+  // };
+
   render() {
-    const { posts } = this.state;
+    const { posts, details, search } = this.state;
+
+    // console.log(details);
 
     const divStyle = {
       height: "80vh",
@@ -19,10 +37,6 @@ class Home extends Component {
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center"
     };
-
-    // function HelloWorldComponent() {
-    //   return <div style={divStyle}>Hello World!</div>;
-    // }
 
     return (
       <React.Fragment>
@@ -33,8 +47,10 @@ class Home extends Component {
               style={divStyle}
             >
               <h1>find a recipe</h1>
+              <Search details={details} search={search} />
 
-              <div className="searchContainer">
+              {/* {this.searchforIngredients()} */}
+              {/* <div className="searchContainer">
                 <i className="fa fa-search searchIcon" />
                 <input
                   className="searchBox"
@@ -43,7 +59,7 @@ class Home extends Component {
                   placeholder=" What would you like to cook?"
                 />
                 <input type="submit" value="Search" className="searchButton" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
