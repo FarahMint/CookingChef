@@ -10,23 +10,70 @@ class Home extends Component {
   state = {
     search: [],
     posts: recipes,
-    details: recipeDetails
+    details: recipeDetails,
+    text: "",
+    suggestionSelect: false
   };
 
-  // searchforIngredients = () => {
-  //   this.state.details.map(item => {
-  //     // console.log(item.ingredients);
-  //     const ingredients = item.ingredients;
-  //     // console.log(ingredients);
-  //     return ingredients.filter(i => {
-  //       // console.log(i);
-  //       return i;
-  //     });
-  //   });
-  // };
+  handleChange = e => {
+    const userInput = e.target.value;
+    let search = [];
+    // console.log(this.state.details);
+    const { details } = this.state;
+
+    if (userInput.length > 0) {
+      let regex = new RegExp(`^${userInput}`, "i");
+
+      // const recipeSelected = details.map( item => <RecipeSelected key={item.id} item ={item}/>)
+      // TITLE FILTER
+      search = details
+        .map(recipe => recipe.title)
+        .sort()
+        .filter(item => regex.test(item));
+    }
+
+    this.setState(() => ({
+      search,
+      text: userInput
+    }));
+  };
+
+  suggestionSelected = value => {
+    // updatestate
+    this.setState(() => ({
+      text: value,
+      // when user select an item empty the array
+      search: []
+    }));
+  };
+
+  displaySuggestion = () => {
+    const { search } = this.state;
+    // console.log(search);
+    if (search.length > 0) {
+      return (
+        <ul className="suggestionBox">
+          {search.map((item, index) => (
+            // suggestionSelected fire when click
+
+            <li key={index} onClick={() => this.suggestionSelected(item)}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+  };
+
+  // render recipe selected
+  // const recipeSelected = details.map( item => <PostList  key={item.id} item ={item} posts={posts} />)
+
+  // return ({recipeSelected})
+
+  // function RecipeSelected(props){return(<div>..{props.item.image} ....</div>)}
 
   render() {
-    const { posts, details, search } = this.state;
+    const { posts, details, search, text } = this.state;
 
     // console.log(details);
 
@@ -47,7 +94,14 @@ class Home extends Component {
               style={divStyle}
             >
               <h1>find a recipe</h1>
-              <Search details={details} search={search} />
+              <Search
+                details={details}
+                search={search}
+                text={text}
+                handleChange={this.handleChange}
+                suggestionSelected={this.suggestionSelected}
+                displaySuggestion={this.displaySuggestion}
+              />
 
               {/* {this.searchforIngredients()} */}
               {/* <div className="searchContainer">
