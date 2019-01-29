@@ -2,20 +2,19 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 
 const Navbar = props => {
-  // console.log(props);
-
-  // To redirect page
-  // setTimeout(() => {
-  //   props.history.push("/");
-  // }, 3000);
-
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container-fluid">
         <a href="/" className="navbar-brand">
           Cooking-Chef
         </a>
-        <ul className="navbar-nav">
+        <div className="seo d-flex ">
+          <i className="fab fa-twitter-square" />
+          <i className="fab fa-pinterest-square" />
+          <i className="fab fa-instagram" />
+        </div>
+
+        {/* <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" to="/">
               Home
@@ -31,7 +30,7 @@ const Navbar = props => {
               Contact
             </NavLink>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </nav>
   );

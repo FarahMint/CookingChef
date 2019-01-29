@@ -16,6 +16,7 @@ body {
 .navbar-nav {
   -ms-flex-direction: row;
   flex-direction: row;
+  /* justify-content: space-between; */
 }
 .navbar-brand {
   color: #f93f23 !important;
@@ -34,8 +35,25 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-.nav-item {
-  padding: 0.5rem;
+
+nav i.fab {
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  padding: 0.25rem;
+  transition: all 0.5s linear;
+}
+nav i.fab:hover {
+  color: #f93f23;
+  padding-top: 0.5rem;
+}
+.fa-twitter-square {
+  color: #38a1f3;
+}
+.fa-pinterest-square {
+  color: #c8232c;
+}
+.fa-instagram {
+  color: #3fc29b;
 }
 
 /* HOME */
@@ -48,12 +66,18 @@ body {
 }
 
 .searchContainer {
-  display: grid;
-  grid-template-columns: 1.5rem 4fr 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr; */
   width: 90%;
-  background-color: #f1f2f2;
+
   border-radius: 5px;
   overflow: hidden;
+}
+.searchContainer input {
+  width: 90%;
+  border: 0;
+  padding: 0.75rem;
+  outline: none;
 }
 
 .searchContainer:focus-within i {
@@ -86,7 +110,10 @@ body {
   grid-row: 1;
 }
 
-/* POSTLIST -- POST */
+/* RECIPE */
+.card {
+  border: none;
+}
 
 .content a:nth-child(1) {
   font-size: 1.25rem;
@@ -104,7 +131,7 @@ body {
   letter-spacing: 1px;
 }
 
-h4.card-title {
+h2.card-title {
   font-size: 1.25rem;
   font-weight: 300;
   color: #444;
@@ -121,8 +148,6 @@ i.fa-arrow-alt-circle-left {
   font-size: 3rem;
 }
 
-i.fa-bookmark,
-i.fa-heart,
 i.fa-arrow-alt-circle-left {
   color: #444;
   transition: all 0.5s ease-out;
@@ -181,46 +206,9 @@ i.fa-arrow-alt-circle-left:hover {
   cursor: pointer;
 }
 
-/* auto complete */
+/* LIST INGREDIENTS */
 
-.searchBox {
-  width: 100%;
-  border: 1px solid rgb(206, 205, 205);
-  box-shadow: 5px 3px 2px 1px rgba(0, 0, 0, 0.7);
-  font-size: 1.25rem;
-}
-
-.searchBox input {
-  width: 100%;
-  border: none;
-  font-size: 1.25rem;
-  padding: 0.75rem 0.25rem;
-  border: 1px solid grey;
-  color: rgba(0, 0, 0, 0.73);
-  outline: none;
-}
-
-.suggestionBox {
-  /* padding: 0.5rem; */
-  grid-row: 2;
-  grid-column: 2;
-  /* font-size: 1.5rem;
-  color: #ddd; */
-  /* border: 2px solid red; */
-  z-index: 2;
-
-  list-style: none;
-  text-align: left;
-  border-top: grey;
-}
-/* .searchBox ul::before {
-  content: "";
-} */
-.searchBox li {
-  padding: 0.75rem 0.25rem;
-  cursor: pointer;
-}
-.searchBox li:hover {
-  text-decoration: underline;
-  background-color: rgba(128, 128, 128, 20);
+.list-group-item {
+  font-size: 1.15rem;
+  line-height: 2rem;
 }
