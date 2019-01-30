@@ -34,9 +34,9 @@ class Recipe extends Component {
 
   componentDidMount = () => {
     this.getSelectedRecipe();
-    const json = localStorage.getItem("recipe");
-    const recipe = JSON.parse(json);
-    this.setState({ recipe });
+    // const json = localStorage.getItem("recipe");
+    // const recipe = JSON.parse(json);
+    // this.setState({ recipe });
   };
 
   componentDidUpdate = () => {
@@ -53,7 +53,7 @@ class Recipe extends Component {
       image_url,
       ingredients
     } = this.state.recipe;
-
+    console.log(this.state.recipe);
     const display = () => {
       return (
         <div>
