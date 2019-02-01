@@ -1,35 +1,37 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
 class Recipe extends Component {
   state = {
     recipe: [],
-    id: "",
+    recipe_id: "",
     apiUrl_details: `https://www.food2fork.com/api/get?key=`,
-    // https://www.food2fork.com/api/get?key=${API_KEY}&rId=35382
-    API_KEY: `129ebdcf3f99a485fca36c622dc88df0`
+
+    API_KEY: API_KEY
   };
 
-  getSelectedRecipe = () => {
-    let id = this.props.match.params.recipe_id;
-    console.log(this.props.match.params.recipe_id);
+  getSelectedRecipe = async () => {
+    try {
+      let id = await this.props.match.params.recipe_id;
 
-    this.setState({ id });
+      this.setState({ recipe_id: id });
+      const { API_KEY, recipe_id } = this.state;
+      // console.log(recipe_id);
+      const data = await fetch(
+        `https://www.food2fork.com/api/get?key=${API_KEY}&rId=${recipe_id}`
+      );
 
-    axios
-      .get(
-        `${this.state.apiUrl_details}${this.state.API_KEY}&rId=${
-          this.props.match.params.recipe_id
-        }`
-      )
-      .then(res =>
-        this.setState({
-          recipe: res.data.recipe
-        })
-      )
-      .catch(err => console.log(err));
+      const jsondata = await data.json();
+
+      this.setState({
+        recipe: jsondata.recipe
+      });
+      // console.log(jsondata);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   componentDidMount = () => {
@@ -40,6 +42,7 @@ class Recipe extends Component {
   };
 
   componentDidUpdate = () => {
+    // this.getSelectedRecipe();
     const recipe = JSON.stringify(this.state.recipe);
     // assign to local storage
     localStorage.setItem("recipe", recipe);
@@ -54,6 +57,7 @@ class Recipe extends Component {
       ingredients
     } = this.state.recipe;
     console.log(this.state.recipe);
+
     const display = () => {
       return (
         <div>
