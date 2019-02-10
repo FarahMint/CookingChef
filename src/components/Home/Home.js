@@ -2,8 +2,19 @@ import React, { Component } from "react";
 import showcase from "../../showcase.jpeg";
 
 import { Link } from "react-router-dom";
+import Search from "../search/Search";
+import "../../App.css";
 
 export default class Home extends Component {
+  //  -----------------------------------------------
+  // GET POSITION OF RECIPES LIST TO SCROLL AFTER SEARCH
+  //  -----------------------------------------------
+
+  // position = () => {
+  //   const recipeList = document.querySelector("#recipes-list");
+  //   console.log(recipeList.offsetTop);
+  // };
+
   render() {
     const divStyle = {
       height: "70vh",
@@ -18,29 +29,30 @@ export default class Home extends Component {
     };
 
     const { recipes } = this.props;
-    console.log(this.props);
+    const { value, handleChange, handleSubmit } = this.props;
+    // console.log(this.props);
     return (
       <React.Fragment>
         <div className="container-fluid">
-          <div className="row d-flex justify-content-around align-items-center">
+          <div className="row">
             <div
-              className="showcase w-100 col-xs-12 col-sm-12 col-md-6"
+              className="showcase w-100 col-xs-12 col-sm-12 col-md-12 d-flex justify-content-center align-items-center"
               style={divStyle}
-            />
-            <div>
-              <h1>editor's collection</h1>
-              <p>20 Easy Weeknight Recipes</p>
-
-              <div>
-                <a href="#recipes-list" className="btn btn-warning">
-                  Our Guide
-                </a>
-              </div>
+            >
+              <Search
+                value={value}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
             </div>
           </div>
         </div>
 
-        <div className="container container__recipes-list" id="recipes-list">
+        <div
+          className="container container__recipes-list"
+          ref={this.props.refProp}
+        >
+          {/* // attach the ref property to a dom element */}
           <h2 className="title__recipes-list">recipes and guides...</h2>
           <div className="row">
             {recipes.map(item => {
@@ -49,7 +61,11 @@ export default class Home extends Component {
                   className="col-sm-12 col-md-6 col-lg-4"
                   key={item.recipe_id}
                 >
-                  <div className="mx-auto" style={{ width: "18rem" }}>
+                  <div
+                    className="mx-auto"
+                    style={{ width: "18rem" }}
+                    id="recipes-list"
+                  >
                     <div className="content mt-3 mb-3 gallery-item">
                       <Link to={`/${item.recipe_id}`}>
                         {item.title > 17 ? (

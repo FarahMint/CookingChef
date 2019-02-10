@@ -42,6 +42,7 @@ class Recipe extends Component {
   };
 
   componentDidUpdate = () => {
+    // this.getSelectedRecipe();
     const recipe = JSON.stringify(this.state.recipe);
     // assign to local storage
     localStorage.setItem("recipe", recipe);
@@ -53,8 +54,7 @@ class Recipe extends Component {
       publisher,
       publisher_url,
       image_url,
-      ingredients,
-      source_url
+      ingredients
     } = this.state.recipe;
     console.log(this.state.recipe);
 
@@ -94,14 +94,6 @@ class Recipe extends Component {
               </div>
               <div className="ingredients-card list-group col-sm-12 col-md-6">
                 <p className="list-group-item">{ingredients}</p>
-                <a
-                  href={source_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-warning w-50 mt-2"
-                >
-                  publisher website
-                </a>
               </div>
             </div>
           </div>
@@ -109,12 +101,7 @@ class Recipe extends Component {
       );
     };
 
-    return (
-      <div>
-        {/* {this.getSelectedRecipe()} */}
-        {display()}
-      </div>
-    );
+    return <div>{display()}</div>;
   }
 }
 

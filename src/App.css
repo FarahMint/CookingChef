@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   box-sizing: border-box;
 }
@@ -11,42 +15,62 @@ body {
   text-align: center;
 }
 
+:root {
+  --mainOrange: #f93f23;
+  --mainGrey: #ddd;
+  --mainWhite: #fefefe;
+  --mainDarkGrey: #444;
+  --mainBlack: #2c2929;
+}
+
 /* NAVBAR */
 
-.navbar-nav {
-  -ms-flex-direction: row;
-  flex-direction: row;
-  /* justify-content: space-between; */
-}
 .navbar-brand {
-  color: #f93f23 !important;
+  color: var(--mainOrange) !important;
+  /* color: #f93f23 !important; */
   font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 .navbar-brand a {
-  color: #f93f23;
+  color: var(--mainOrange);
+  /* color: #f93f23; */
 }
 .navbar-brand {
-  color: #f93f23;
+  color: var(--mainOrange);
+  /* color: #f93f23; */
   font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: 0.5rem;
   text-transform: uppercase;
+  margin: 0;
 }
 @media screen and (min-width: 675px) {
   .navbar > .container-fluid {
     flex-wrap: nowrap;
   }
-  form.input-group {
-    width: 50%;
-  }
 }
 @media screen and (max-width: 675px) {
-  form.input-group {
+  .brief__desc {
     order: 2;
+    margin-bottom: 0;
   }
+
+  .navbar-brand {
+    color: var(--mainOrange);
+    /* color: #f93f23 !important; */
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+  .seo i.fab {
+    font-size: 0.75rem;
+    padding: 0.15rem;
+  }
+}
+
+.brief__desc a {
+  margin-left: 0.45rem;
 }
 
 .seo i.fab {
@@ -56,7 +80,8 @@ body {
 }
 
 .seo i.fab:hover {
-  color: #f93f23;
+  color: var(--mainOrange);
+  /* color: #f93f23; */
   padding-top: 0.5rem;
 }
 .fa-twitter-square {
@@ -69,56 +94,58 @@ body {
   color: #3fc29b;
 }
 
-.input-group-prepend {
-  margin-right: -18px;
-  z-index: 10;
-  margin-top: auto;
-  margin-bottom: auto;
-}
+/* HOME */
 
-input.form-control {
-  width: 100%;
+.showcase .input-group {
+  /* padding: 2rem; */
+  width: 80%;
   border: 0;
   padding: 0.75rem;
-  outline: none;
-  margin-right: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.input-group-prepend {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 85%;
+  align-items: center;
+  z-index: 10;
+  color: var(--mainGrey);
+  font-size: 1.5rem;
 }
 
 .searchButton {
-  background: #f93f23;
+  background: var(--mainOrange);
   border: 0;
-  color: white;
+  color: var(--mainWhite);
   padding: 0.5rem;
   border-radius: 0;
   grid-column: 4/5;
   grid-row: 1;
 }
-
-/* HOME */
-
-.showcase-container {
-  padding: 2rem;
-  width: 80%;
+.searchButton:focus {
+  outline: none;
 }
-.showcase h1 {
-  font: bold 2.1875rem/2.875rem "Source Serif Pro", serif;
-  font-weight: 400;
-  color: #fefefe;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+
+@media (min-width: 678px) {
+  .input-group-prepend {
+    left: 90%;
+  }
 }
 
 /* RECIPE LIST CONTAINER */
 
 .container__recipes-list {
   margin-top: 2rem;
-  border-top: 1rem solid #f93f23;
+  border-top: 1rem solid var(--mainOrange);
 }
 .title__recipes-list {
   padding: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
-  color: #444;
+  color: var(--mainDarkGrey);
 }
 
 /* RECIPE */
@@ -129,7 +156,7 @@ input.form-control {
 .content a:nth-child(1) {
   font-size: 1.25rem;
   font-weight: 300;
-  color: #2c2929;
+  color: var(--mainBlack);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -137,7 +164,7 @@ input.form-control {
 .sub__title {
   font-size: 0.75rem;
   font-weight: 300;
-  color: #f93f23;
+  color: var(--mainOrange);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -145,7 +172,7 @@ input.form-control {
 h2.card-title {
   font-size: 1.25rem;
   font-weight: 300;
-  color: #444;
+  color: var(--mainDarkGrey);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -156,11 +183,11 @@ h2.card-title {
 }
 
 i.fa-arrow-alt-circle-left {
-  font-size: 3rem;
+  font-size: 2.25rem;
 }
 
 i.fa-arrow-alt-circle-left {
-  color: #444;
+  color: var(--mainDarkGrey);
   transition: all 0.5s ease-out;
   transform: scale(1);
 }
@@ -168,7 +195,7 @@ i.fa-arrow-alt-circle-left {
 i.fa-bookmark:hover,
 i.fa-heart:hover,
 i.fa-arrow-alt-circle-left:hover {
-  color: #f93f23;
+  color: var(--mainOrange);
   transform: scale(1.2);
 }
 
@@ -217,7 +244,7 @@ footer {
   max-width: 100%;
 }
 .brief__description {
-  color: #fff;
+  color: var(--mainWhite);
   text-align: justify;
   font-size: 1.25rem;
   font-weight: 200;
@@ -225,7 +252,7 @@ footer {
   padding-bottom: 30px;
 }
 .copy__right span {
-  color: #fff;
+  color: var(--mainWhite);
 }
 
 @media screen and (min-width: 765px) {

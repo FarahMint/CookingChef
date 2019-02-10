@@ -10,18 +10,24 @@ import "./App.css";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
+  //  -----------------------------------------------
+  // STATE
+  //  -----------------------------------------------
   state = {
-    search: "",
-    amount: 15,
-    apiUrl: `https://www.food2fork.com/api/search?key=`,
-    API_KEY: API_KEY,
     recipes: [],
-    id: ""
+    search: "",
+    URL: `https://www.food2fork.com/api/search?key=`,
+    API_KEY: API_KEY,
+
+    recipe_id: ""
   };
 
+  //  -----------------------------------------------
+  // GET ALL RECIPES WHEN WEBPAGE LOAD
+  //  -----------------------------------------------
   async getRecipes() {
     try {
-      const data = await fetch(`${this.state.apiUrl}${this.state.API_KEY}`);
+      const data = await fetch(`${this.state.URL}${this.state.API_KEY}`);
       const jsondata = await data.json();
 
       this.setState({
@@ -33,6 +39,10 @@ class App extends Component {
     }
   }
 
+  //  -----------------------------------------------
+  // GET RECIPES FROM SEARCH WHEN WEBPAGE LOAD
+  //  -----------------------------------------------
+
   handleChange = e => {
     this.setState({
       search: e.target.value
@@ -40,29 +50,45 @@ class App extends Component {
   };
 
   getSearch = async () => {
-    const { apiUrl, API_KEY, search } = this.state;
+    const { URL, API_KEY, search } = this.state;
     try {
-      const data = await fetch(`${apiUrl}${API_KEY}&q=${search}`);
+      const data = await fetch(`${URL}${API_KEY}&q=${search}`);
       const jsondata = await data.json();
 
-      this.setState({
-        recipes: jsondata.recipes
-      });
-      // console.log(this.state.recipes);
+      this.setState(() => ({ recipes: jsondata.recipes }));
     } catch (err) {
       console.log(err);
     }
   };
+
   handleSubmit = e => {
     e.preventDefault();
     this.getSearch();
+    this.position();
+
+    this.setState({
+      search: ""
+    });
   };
+
+  //  -----------------------------------------------
+  // GET POSITION OF RECIPES LIST TO SCROLL AFTER SEARCH
+  //  -----------------------------------------------
+
+  position = () => {
+    const recipeList = document.querySelector("#recipes-list");
+
+    const offsetTop = recipeList.offsetTop;
+    window.scrollTo(0, offsetTop + 500);
+  };
+
+  // COMPONENTDIDMOUNT --- COMPONENTDIDUPDATE
 
   componentDidMount = () => {
     this.getRecipes();
-    // const json = localStorage.getItem("recipes");
-    // const recipes = JSON.parse(json);
-    // this.setState({ recipes });
+    const json = localStorage.getItem("recipes");
+    const recipes = JSON.parse(json);
+    this.setState({ recipes });
   };
 
   componentDidUpdate = () => {
@@ -75,19 +101,23 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            value={this.state.search}
-          />
+          <NavBar position={this.position} />
           <Switch>
             <Route
               exact
               path="/"
               // component={Home}
-              render={props => <Home {...props} recipes={this.state.recipes} />}
+              render={props => (
+                <Home
+                  {...props}
+                  recipes={this.state.recipes}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                  value={this.state.search}
+                />
+              )}
             />
-            {/* TODO- to keep the search bar when render one particular recipe -> try render method used for route home above and check the props we get transfer to recipe coponent */}
+
             <Route exact path="/:recipe_id" component={Recipe} />
           </Switch>
           <Footer />

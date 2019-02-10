@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-// import { NavLink, withRouter } from "react-router-dom";
-import { withRouter } from "react-router-dom";
 
-import Search from "../search/Search";
+import { withRouter } from "react-router-dom";
 import "../../App.css";
 
 class Navbar extends Component {
   render() {
-    const { value, handleChange, handleSubmit } = this.props;
+    // const { value, handleChange, handleSubmit } = this.props;
 
     return (
       <nav className="navbar navbar-light bg-light">
@@ -15,11 +13,7 @@ class Navbar extends Component {
           <a href="/" className="navbar-brand">
             Cooking-Chef
           </a>
-          <Search
-            value={value}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
+
           <div className="seo">
             <i className="fab fa-twitter-square" />
             <i className="fab fa-pinterest-square" />

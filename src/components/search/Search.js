@@ -15,7 +15,7 @@ class Search extends Component {
             name="search"
             value={value}
             onChange={handleChange}
-            placeholder="  What to cook this week?"
+            placeholder="  chicken, onion, carrot"
             className="form-control"
           />
         </form>
