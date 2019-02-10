@@ -18,7 +18,6 @@ class App extends Component {
     search: "",
     URL: `https://www.food2fork.com/api/search?key=`,
     API_KEY: API_KEY,
-
     recipe_id: ""
   };
 
