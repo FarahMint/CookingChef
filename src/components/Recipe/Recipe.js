@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = `129ebdcf3f99a485fca36c622dc88df0`;
 class Recipe extends Component {
   state = {
     recipe: [],
@@ -42,9 +43,9 @@ class Recipe extends Component {
   };
 
   componentDidUpdate = () => {
-    // const recipe = JSON.stringify(this.state.recipe);
+    const recipe = JSON.stringify(this.state.recipe);
     // assign to local storage
-    // localStorage.setItem("recipe", recipe);
+    localStorage.setItem("recipe", recipe);
   };
 
   render() {
