@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 // const API_KEY = process.env.REACT_APP_API_KEY;
-const API_KEY = `${process.env.REACT_APP_API_KEY}`;
+const API_KEY = `129ebdcf3f99a485fca36c622dc88df0`;
 
 // console.log(API_KEY);
 class App extends Component {
