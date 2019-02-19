@@ -87,9 +87,9 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getRecipes();
-    const json = localStorage.getItem("recipes");
-    const recipes = JSON.parse(json);
-    this.setState({ recipes });
+    // const json = localStorage.getItem("recipes");
+    // const recipes = JSON.parse(json);
+    // this.setState({ recipes });
   };
 
   componentDidUpdate = () => {
