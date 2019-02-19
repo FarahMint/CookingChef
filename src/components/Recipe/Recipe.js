@@ -42,9 +42,9 @@ class Recipe extends Component {
   };
 
   componentDidUpdate = () => {
-    const recipe = JSON.stringify(this.state.recipe);
+    // const recipe = JSON.stringify(this.state.recipe);
     // assign to local storage
-    localStorage.setItem("recipe", recipe);
+    // localStorage.setItem("recipe", recipe);
   };
 
   render() {
