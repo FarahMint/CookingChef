@@ -50,7 +50,7 @@ export default class Home extends Component {
 
         <div
           className="container container__recipes-list"
-          ref={this.props.refProp}
+          // ref={this.props.refProp}
         >
           {/* // attach the ref property to a dom element */}
           <h2 className="title__recipes-list">recipes and guides...</h2>

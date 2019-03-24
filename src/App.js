@@ -7,8 +7,7 @@ import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-const API_KEY = `129ebdcf3f99a485fca36c622dc88df0`;
+const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 // console.log(API_KEY);
 class App extends Component {
@@ -19,7 +18,7 @@ class App extends Component {
     recipes: [],
     search: "",
     URL: `https://www.food2fork.com/api/search?key=`,
-    API_KEY: API_KEY,
+
     recipe_id: ""
   };
 
@@ -28,7 +27,7 @@ class App extends Component {
   //  -----------------------------------------------
   async getRecipes() {
     try {
-      const data = await fetch(`${this.state.URL}${this.state.API_KEY}`);
+      const data = await fetch(`${this.state.URL}${REACT_APP_API_KEY}`);
       const jsondata = await data.json();
 
       this.setState({
@@ -51,9 +50,9 @@ class App extends Component {
   };
 
   getSearch = async () => {
-    const { URL, API_KEY, search } = this.state;
+    const { URL, search } = this.state;
     try {
-      const data = await fetch(`${URL}${API_KEY}&q=${search}`);
+      const data = await fetch(`${URL}${REACT_APP_API_KEY}&q=${search}`);
       const jsondata = await data.json();
 
       this.setState(() => ({ recipes: jsondata.recipes }));

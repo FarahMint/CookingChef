@@ -2,15 +2,13 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-const API_KEY = `129ebdcf3f99a485fca36c622dc88df0`;
+const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
+
 class Recipe extends Component {
   state = {
     recipe: [],
     recipe_id: "",
-    apiUrl_details: `https://www.food2fork.com/api/get?key=`,
-
-    API_KEY: API_KEY
+    apiUrl_details: `https://www.food2fork.com/api/get?key=`
   };
 
   getSelectedRecipe = async () => {
@@ -18,10 +16,10 @@ class Recipe extends Component {
       let id = await this.props.match.params.recipe_id;
 
       this.setState({ recipe_id: id });
-      const { API_KEY, recipe_id } = this.state;
+      const { recipe_id } = this.state;
       // console.log(recipe_id);
       const data = await fetch(
-        `https://www.food2fork.com/api/get?key=${API_KEY}&rId=${recipe_id}`
+        `https://www.food2fork.com/api/get?key=${REACT_APP_API_KEY}&rId=${recipe_id}`
       );
 
       const jsondata = await data.json();
@@ -57,7 +55,7 @@ class Recipe extends Component {
       ingredients,
       source_url
     } = this.state.recipe;
-    console.log(this.state.recipe);
+    // console.log(this.state.recipe);
 
     const display = () => {
       return (
