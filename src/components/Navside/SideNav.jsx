@@ -27,7 +27,7 @@ const  SideNav= props=> {
             
                 </div>
       
-      <NavLinksMenu selection={props.selection}  onClick={ props.toggleNavHandler }/>
+      <NavLinksMenu selection={props.selection}  toggleNavHandler={ props.toggleNavHandler }/>
       
  
   </nav>
