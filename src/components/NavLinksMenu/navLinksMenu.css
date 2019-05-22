@@ -2,24 +2,29 @@
     list-style: none;
   height: 100%;
   flex-flow: column;
+
 }   
 .side__nav li{
  font-size: 1.25rem;
     color:#000;
+    margin: 1rem 0;
+    text-transform: uppercase;
 }   
 .side__nav a{
     
     text-decoration: none;
+   
 }   
  
 a.selected.active{
-    background: var(--mainOrange);
+    background: var(--lightOrange);
     color: var(--mainWhite);
 }
  
+.side__nav a:hover,
 a.selected.active:focus,
 a.selected.active:hover{
-    background: var(--mainOrange);
+    background:   var(--mainOrange);
     color: var(--mainWhite);
 }
  

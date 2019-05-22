@@ -9,6 +9,7 @@ body {
 }
 :root {
   --mainOrange: #f93f23;
+  --lightOrange: rgba(249, 63, 35,.5);
   --mainGrey: #ddd;
   --mainWhite: #fefefe;
   --mainDarkGrey: #444;

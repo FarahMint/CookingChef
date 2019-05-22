@@ -21,7 +21,7 @@ const FavoriteSelection=(props)=> {
       {item.title > 17 ? (
                           item.title
                         ) : (
-                          (item.title = `${item.title.substring(0, 17)}...`)
+                          (item.title = `${item.title.substring(0, 20)}..`)
                         )}
       
       </h2>
@@ -29,7 +29,10 @@ const FavoriteSelection=(props)=> {
             className="btn btn-warning close mt-1"
             aria-label="Delete" 
             onClick={()=>props.removeFavorite(item.recipe_id)}>
-            <i className="fa fa-times"  title="Remove this recipe from your favorite?"  aria-hidden="true"></i></button>
+            <i className="fa fa-times" 
+             title="Remove this recipe from your favorite?"  aria-hidden="true"
+         
+             ></i></button>
               <img
                   src={item.image_url}
                   alt={item.title}

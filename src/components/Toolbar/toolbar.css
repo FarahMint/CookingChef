@@ -3,15 +3,16 @@
     top:0;
     left:0;
     width: 100%;
-    background: var(--mainOrange);
+    background: var(--mainWhite);
     height:56px;
     z-index:100;
     padding: 0 1rem;
+    box-shadow: 2px 0px 5px rgba(0,0,0,.5);
  
 }
 
 .toolbar__logo a{
-    color: var(--mainWhite);
+    color: var(--mainOrange);
     font-size: 1.25rem;
 }
 
@@ -27,21 +28,27 @@ height:100%;
 }
 .toolbar__nav-items li{   
     padding:0 0.5rem;
+    margin:0 1rem;
+    text-transform: uppercase;
 }
 .toolbar__nav-items a{
-    color: var(--mainWhite);
+    color: var(--mainOrange);
     text-decoration: none; 
     cursor: pointer;
+
 }
 
-.selected.active{
-    background-color:var(--mainWhite);
-    color: var(--mainOrange);
+ 
+.toolbar__nav-items li:hover,
+a.selected.active:focus,
+a.selected.active:hover{
+    background:   var(--mainOrange);
+    color: var(--mainWhite);
 }
-.selected.active:focus,
-.selected.active:hover{
-    background-color:var(--mainWhite);
-    color: var(--mainOrange);
+
+a.selected.active{
+    background: var(--lightOrange);
+    color: var(--mainWhite);
 }
  
 button.toggle-button {

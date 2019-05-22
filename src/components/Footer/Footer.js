@@ -15,14 +15,19 @@ export default function Footer() {
           </p>
         </div>
 
-        <a href="/" className="navbar-brand">
-          Cooking-Chef
-        </a>
-
         <div className="seo">
-          <i className="fab fa-twitter-square" />
-          <i className="fab fa-pinterest-square" />
-          <i className="fab fa-instagram" />
+          <i 
+          className="fab fa-twitter-square"
+          title="twitter"  aria-hidden="true"
+           />
+          <i 
+          className="fab fa-pinterest-square" 
+          title="pinterest"  aria-hidden="true"
+          />
+          <i 
+          className="fab fa-instagram"
+          title="instagram"  aria-hidden="true"
+           />
         </div>
       </div>
       <div className="copy__right">

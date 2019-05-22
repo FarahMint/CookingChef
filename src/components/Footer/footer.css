@@ -21,6 +21,32 @@ footer {
     color: var(--mainWhite);
   }
 
+  .brief__desc a {
+    margin-left: 0.45rem;
+  }
+  
+  .seo i.fab, .seo i.fas {
+    font-size: 1.5rem;
+    align-self: flex-end;
+    padding: 0.25rem;
+    
+  }
+  
+  .seo i.fab:hover {
+    color: var(--mainOrange);
+    padding-top: 0.5rem;
+  }
+  .fa-twitter-square {
+    color: #38a1f3;
+  }
+  .fa-pinterest-square {
+    color: #c8232c;
+  }
+  .fa-instagram {
+    color: #3fc29b;
+  }
+  
+
   @media screen and (min-width: 765px) {
     .brief__description {
       padding-bottom: 0;
@@ -42,3 +68,18 @@ footer {
       margin-top: 1.25rem;
     }
   }
+
+   
+@media screen and (max-width: 675px) {
+  .brief__desc {
+    order: 2;
+    margin-bottom: 0;
+  }
+
+  
+  .seo i.fab {
+    font-size: 0.75rem;
+    padding: 0.15rem;
+  }
+}
+
