@@ -1,0 +1,13 @@
+.recipe__basket{
+    border: 1px solid var(--mainWhite);
+    background-color: var(--mainWhite);
+    color:  var(--mainOrange);
+    border-radius:50px;
+    margin-left: .25rem;
+    padding: .25rem;
+}
+
+
+.fa-shopping-basket {
+    color:  var(--mainOrange);
+  }

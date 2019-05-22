@@ -1,130 +1,117 @@
-import React, { Component } from "react";
-import NavBar from "./components/navbar/NavBar";
+import React , { Component } from "react";
+ 
+ 
+import SideNav from "./components/Navside/SideNav"
+import Toolbar from "./components/Toolbar/Toolbar"
+import BackDrop from "./components/Backdrop/BackDrop"
+
 import Home from "./components/Home/Home";
 import Recipe from "./components/Recipe/Recipe";
+import FavoriteSelection from "./components/FavoriteSelection/FavoriteSelection";
 import Footer from "./components/Footer/Footer";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+//  TO CONNECT TO REDUX STORE 
+import { connect } from "react-redux";
 
-const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
-
-// console.log(API_KEY);
 class App extends Component {
-  //  -----------------------------------------------
-  // STATE
-  //  -----------------------------------------------
-  state = {
-    recipes: [],
-    search: "",
-    URL: `https://www.food2fork.com/api/search?key=`,
-
-    recipe_id: ""
-  };
-
-  //  -----------------------------------------------
-  // GET ALL RECIPES WHEN WEBPAGE LOAD
-  //  -----------------------------------------------
-  async getRecipes() {
-    try {
-      const data = await fetch(`${this.state.URL}${REACT_APP_API_KEY}`);
-      const jsondata = await data.json();
-
-      this.setState({
-        recipes: jsondata.recipes
-      });
-      // console.log(this.state.recipes);
-    } catch (err) {
-      console.log(err);
-    }
+  state ={
+     sideNavOpen: false,
   }
 
-  //  -----------------------------------------------
-  // GET RECIPES FROM SEARCH WHEN WEBPAGE LOAD
-  //  -----------------------------------------------
 
-  handleChange = e => {
-    this.setState({
-      search: e.target.value
-    });
-  };
+// *********** NAVBAR ***********
+ toggleNavHandler = ()=>{
+  this.setState((prevState)=>({
+    sideNavOpen: !prevState.sideNavOpen,
+  }))
+};
 
-  getSearch = async () => {
-    const { URL, search } = this.state;
-    try {
-      const data = await fetch(`${URL}${REACT_APP_API_KEY}&q=${search}`);
-      const jsondata = await data.json();
+backdropHandler = () =>{
+  this.setState({
+    sideNavOpen: false
+  })
+};
 
-      this.setState(() => ({ recipes: jsondata.recipes }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.getSearch();
-    this.position();
 
-    this.setState({
-      search: ""
-    });
-  };
+  render(){
+  // let sideNav;
+  let backdrop;
 
-  //  -----------------------------------------------
-  // GET POSITION OF RECIPES LIST TO SCROLL AFTER SEARCH
-  //  -----------------------------------------------
+if(this.state.sideNavOpen){
 
-  position = () => {
-    const recipeList = document.querySelector("#recipes-list");
+   backdrop =   <BackDrop 
+   backdropHandler={this.backdropHandler} />;
+}
 
-    const offsetTop = recipeList.offsetTop;
-    window.scrollTo(0, offsetTop + 500);
-  };
-
-  // COMPONENTDIDMOUNT --- COMPONENTDIDUPDATE
-
-  componentDidMount = () => {
-    this.getRecipes();
-    // const json = localStorage.getItem("recipes");
-    // const recipes = JSON.parse(json);
-    // this.setState({ recipes });
-  };
-
-  componentDidUpdate = () => {
-    const recipes = JSON.stringify(this.state.recipes);
-    // assign to local storage
-    localStorage.setItem("recipes", recipes);
-  };
-
-  render() {
-    return (
+    return (   
       <BrowserRouter>
         <div className="App">
-          <NavBar position={this.position} />
+        <div className="wrapper">
+        <Toolbar 
+        toggleNavHandler ={this.toggleNavHandler}
+        selection={this.props.selection}/>
+      
+      <SideNav 
+   show= {this.state.sideNavOpen}
+    toggleNavHandler ={this.toggleNavHandler }  
+   selection={this.props.selection}/>;
+        
+        {backdrop}
+
+        <main style={{marginTop:"64px"}}>
+          
           <Switch>
             <Route
               exact
               path="/"
-              // component={Home}
               render={props => (
                 <Home
                   {...props}
-                  recipes={this.state.recipes}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                  value={this.state.search}
                 />
               )}
             />
 
-            <Route exact path="/:recipe_id" component={Recipe} />
+            {/* <Route exact path="/:recipe_id/" 
+             component={Recipe} 
+            /> */}
+            <Route 
+            exact
+             path="/:recipe_id/" 
+             render={props => (
+              <Recipe
+                {...props}
+              />
+            )}
+            />
+            <Route 
+            exact
+             path="/user/selection/" 
+             render={props => (
+              <FavoriteSelection
+                {...props}
+              />
+            )}
+            />
           </Switch>
+        </main>
+
+          </div>
           <Footer />
         </div>
       </BrowserRouter>
+    
     );
   }
-}
+  }
 
-export default App;
+  const mapStateToProps= (state)=>{
+    return{  
+      recipe: state.recipe.recipe,
+      selection:state.recipe.selection
+    }
+  }
+
+export default connect(mapStateToProps)(App);

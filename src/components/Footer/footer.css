@@ -1,0 +1,44 @@
+/* FOOTER */
+
+footer {
+    background-color: #000;
+    
+    max-width: 100%;
+    width:100vw;
+    z-index: 100;
+   
+  }
+
+  .brief__description {
+    color: var(--mainWhite);
+    text-align: justify;
+    font-size: 1rem;
+    font-weight: 200;
+    letter-spacing: 0.4px;
+    padding-bottom: 30px;
+  }
+  .copy__right span {
+    color: var(--mainWhite);
+  }
+
+  @media screen and (min-width: 765px) {
+    .brief__description {
+      padding-bottom: 0;
+      padding-right: 85px;
+      width: 50%;
+    }
+  }
+  @media screen and (min-width: 640px) {
+    .brief__description {
+      letter-spacing: 0.6px;
+    }
+    footer {
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      
+    }
+  
+    .copy__right {
+      margin-top: 1.25rem;
+    }
+  }

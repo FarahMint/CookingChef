@@ -1,0 +1,20 @@
+/* FAVORITE SELECTION */
+
+.close{
+    position: absolute;
+    top: 20px;
+    right: -10px
+  }
+  
+  .btn{
+    padding:.55rem;
+  }
+  .btn-primary,
+  .btn-success {
+    font-size: .85rem;
+  }
+  
+   /* .btn.publisher,
+   .btn.favorite{
+     width:15rem;
+   } */

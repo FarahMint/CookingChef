@@ -1,0 +1,27 @@
+.side__nav ul{
+    list-style: none;
+  height: 100%;
+  flex-flow: column;
+}   
+.side__nav li{
+ font-size: 1.25rem;
+    color:#000;
+}   
+.side__nav a{
+    
+    text-decoration: none;
+}   
+ 
+a.selected.active{
+    background: var(--mainOrange);
+    color: var(--mainWhite);
+}
+ 
+a.selected.active:focus,
+a.selected.active:hover{
+    background: var(--mainOrange);
+    color: var(--mainWhite);
+}
+ 
+
+ 

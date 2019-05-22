@@ -3,18 +3,6 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  box-sizing: border-box;
-}
-
-.App {
-  text-align: center;
-}
-
 :root {
   --mainOrange: #f93f23;
   --mainGrey: #ddd;
@@ -22,6 +10,28 @@ body {
   --mainDarkGrey: #444;
   --mainBlack: #2c2929;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+ 
+}
+
+.App {
+  text-align: center;
+  height: 100%;
+
+}
+.wrapper {
+  text-align: center;
+    height:100%;
+  min-height: calc(100vh - 100px);  
+}
+
+
 
 /* NAVBAR */
 
@@ -73,7 +83,7 @@ body {
   margin-left: 0.45rem;
 }
 
-.seo i.fab {
+.seo i.fab, .seo i.fas {
   font-size: 1.5rem;
   align-self: flex-end;
   padding: 0.25rem;
@@ -94,10 +104,11 @@ body {
   color: #3fc29b;
 }
 
+
 /* HOME */
 
-.showcase .input-group {
-  /* padding: 2rem; */
+/* .showcase .input-group {
+  padding: 2rem;
   width: 80%;
   border: 0;
   padding: 0.75rem;
@@ -133,11 +144,11 @@ body {
   .input-group-prepend {
     left: 90%;
   }
-}
+} */
 
 /* RECIPE LIST CONTAINER */
 
-.container__recipes-list {
+/* .container__recipes-list {
   margin-top: 2rem;
   border-top: 1rem solid var(--mainOrange);
 }
@@ -146,10 +157,10 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.15rem;
   color: var(--mainDarkGrey);
-}
+} */
 
 /* RECIPE */
-.card {
+/* .card {
   border: none;
 }
 
@@ -170,11 +181,11 @@ body {
 }
 
 h2.card-title {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 300;
   color: var(--mainDarkGrey);
   letter-spacing: 1px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .ingredients-card {
@@ -197,10 +208,10 @@ i.fa-heart:hover,
 i.fa-arrow-alt-circle-left:hover {
   color: var(--mainOrange);
   transform: scale(1.2);
-}
+} */
 
 /* GALLERY */
-.gallery-item__img {
+/* .gallery-item__img {
   width: 100%;
   height: 100%;
   display: block;
@@ -227,35 +238,62 @@ i.fa-arrow-alt-circle-left:hover {
 .gallery-item__icon:hover {
   color: var(--brown);
   cursor: pointer;
-}
+} */
 
 /* LIST INGREDIENTS */
 
-.list-group-item {
+/* .list-group-item {
   font-size: 1.15rem;
   line-height: 2rem;
-}
+} */
 
 /* FOOTER */
 
-footer {
+/* footer {
   background-color: #000;
-  padding: 2rem;
+  
   max-width: 100%;
-}
-.brief__description {
+  width:100vw;
+  z-index: 100;
+ 
+} */
+
+/* .brief__description {
   color: var(--mainWhite);
   text-align: justify;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 200;
   letter-spacing: 0.4px;
   padding-bottom: 30px;
 }
 .copy__right span {
   color: var(--mainWhite);
+} */
+
+
+/* FAVORITE SELECTION */
+/* 
+.close{
+  position: absolute;
+  top: 20px;
+  right: -10px
 }
 
-@media screen and (min-width: 765px) {
+.btn{
+  padding:.75rem;
+}
+.btn-primary,
+.btn-success {
+  font-size: .85rem;
+}
+
+ .btn.publisher,
+ .btn.favorite{
+   width:15rem;
+ } */
+ 
+
+/* @media screen and (min-width: 765px) {
   .brief__description {
     padding-bottom: 0;
     padding-right: 85px;
@@ -268,9 +306,11 @@ footer {
   }
   footer {
     margin-top: 1.25rem;
+    padding: 1.25rem;
+    
   }
 
   .copy__right {
     margin-top: 1.25rem;
   }
-}
+} */

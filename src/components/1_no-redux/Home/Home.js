@@ -1,33 +1,21 @@
 import React, { Component } from "react";
-  import showcase from "../../showcase.jpeg";
+import showcase from "../../showcase.jpeg";
 
- import { Link } from "react-router-dom";
-   import Search from "../search/Search";
-//  TO CONNECT TO REDUX STORE 
-  import { connect } from "react-redux";
-  import {getRecipes} from "../../store/actions/RecipeAction"
+import { Link } from "react-router-dom";
+import Search from "../search/Search";
+import "../../App.css";
 
- import "./home.css"
-
- class Home extends Component {
-
-   //  -----------------------------------------------
+export default class Home extends Component {
+  //  -----------------------------------------------
   // GET POSITION OF RECIPES LIST TO SCROLL AFTER SEARCH
   //  -----------------------------------------------
 
-  position = () => {
-    const recipeList = document.querySelector("#recipes-list");
-
-    const offsetTop = recipeList.offsetTop;
-    window.scrollTo(0, offsetTop + 500);
-  };
-
-  componentDidMount() {
-  this.props.getRecipes();
-  }
+  // position = () => {
+  //   const recipeList = document.querySelector("#recipes-list");
+  //   console.log(recipeList.offsetTop);
+  // };
 
   render() {
- 
     const divStyle = {
       height: "70vh",
 
@@ -40,12 +28,10 @@ import React, { Component } from "react";
       backgroundPosition: "center"
     };
 
-  const { recipes } = this.props.recipes;
- 
-//  const { search } = this.state;
+    const { recipes } = this.props;
+    const { value, handleChange, handleSubmit } = this.props;
     // console.log(this.props);
     return (
-     
       <React.Fragment>
         <div className="container-fluid">
           <div className="row">
@@ -53,20 +39,23 @@ import React, { Component } from "react";
               className="showcase w-100 col-xs-12 col-sm-12 col-md-12 d-flex justify-content-center align-items-center"
               style={divStyle}
             >
-               <Search
-                position ={this.position}/>  
+              <Search
+                value={value}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
             </div>
           </div>
         </div>
 
         <div
-          className="container container__recipes-list">
- 
+          className="container container__recipes-list"
+          // ref={this.props.refProp}
+        >
+          {/* // attach the ref property to a dom element */}
           <h2 className="title__recipes-list">recipes and guides...</h2>
-
-         
           <div className="row">
-            {recipes && recipes.map(item => {
+            {recipes.map(item => {
               return (
                 <div
                   className="col-sm-12 col-md-6 col-lg-4"
@@ -105,19 +94,9 @@ import React, { Component } from "react";
                 </div>
               );
             })}
-          </div> 
+          </div>
         </div>
       </React.Fragment>
     );
   }
 }
-
-const mapStateToProps= (state)=>{
-
-  return{
-    recipes : state.recipe.recipes
-  }
-}
-
-  export default connect(mapStateToProps, {getRecipes})(Home);
- 

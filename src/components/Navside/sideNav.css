@@ -1,0 +1,52 @@
+.side__nav{
+    height:100%;
+    background: var(--mainWhite);
+    box-shadow: 2px 0px 5px rgba(0,0,0,.5);
+    position: fixed;
+    right: 0;
+    top: 0;
+    max-width:200px;
+    width: 70%;
+    z-index: 200;
+    /* move it to the right to  its full width */
+    transform: translateX(100%);
+    transition: transform .4s ease-out;
+}   
+
+.side__nav.open{
+    /* default position */
+     transform: translateX(0);
+ 
+}
+
+
+.close-side-nav{
+    position:absolute;
+    top:0;
+    left:0;
+    
+    
+}
+.close-side-nav button{
+   border:none;
+   cursor: pointer;
+   outline: none;
+  
+}
+
+.fa-times{
+    color:var(--mainOrange);
+    font-size: 2rem;   
+
+}
+
+.fa-times:hover{
+    color:var(--mainBlack); 
+}
+
+
+@media(min-width:769px){
+    .side__nav{
+        display: none;
+    }
+}

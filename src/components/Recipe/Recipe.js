@@ -1,120 +1,99 @@
 import React, { Component } from "react";
+ import Button from "./Button";
 
-import { Link } from "react-router-dom";
 
-const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
+//  TO CONNECT TO REDUX STORE 
+import { connect } from "react-redux";
+import {getOneRecipe,  getFavoriteRecipe} from "../../store/actions/RecipeAction"
+
+import "./recipe.css";
 
 class Recipe extends Component {
-  state = {
-    recipe: [],
-    recipe_id: "",
-    apiUrl_details: `https://www.food2fork.com/api/get?key=`
-  };
-
-  getSelectedRecipe = async () => {
-    try {
-      let id = await this.props.match.params.recipe_id;
-
-      this.setState({ recipe_id: id });
-      const { recipe_id } = this.state;
-      // console.log(recipe_id);
-      const data = await fetch(
-        `https://www.food2fork.com/api/get?key=${REACT_APP_API_KEY}&rId=${recipe_id}`
-      );
-
-      const jsondata = await data.json();
-
-      this.setState({
-        recipe: jsondata.recipe
-      });
-      // console.log(jsondata);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   componentDidMount = () => {
-    this.getSelectedRecipe();
-    // const json = localStorage.getItem("recipe");
-    // const recipe = JSON.parse(json);
-    // this.setState({ recipe });
+   const id = this.props.match.params.recipe_id;
+  this.props.getOneRecipe(id);
+
   };
 
-  componentDidUpdate = () => {
-    const recipe = JSON.stringify(this.state.recipe);
-    // assign to local storage
-    localStorage.setItem("recipe", recipe);
-  };
+ 
 
+  favoriteSelection =()=>{
+    this.props.getFavoriteRecipe(this.props.recipe);
+   this.props.history.push("/user/selection/")
+  }
   render() {
-    const {
-      title,
-      publisher,
-      publisher_url,
-      image_url,
-      ingredients,
-      source_url
-    } = this.state.recipe;
-    // console.log(this.state.recipe);
-
-    const display = () => {
-      return (
-        <div>
-          <Link to="/">
-            <i className="far fa-arrow-alt-circle-left order-1" />
-          </Link>
-          <div className="card">
-            <div className="row mt-3 ">
-              <div className="col-12 d-flex justify-content-around align-items-center ">
-                <h2 className="center card-title py-4 order-2">{title}</h2>
-              </div>
-            </div>
-            <div className="row mt-3 d-flex">
-              <div className="col-sm-12 col-md-6">
-                <img
-                  src={image_url}
-                  alt={title}
-                  className="responsive-img rounded w-55"
-                  style={{
-                    width: "450px",
-                    height: "450px"
-                  }}
-                />
-                <p>
-                  <a
-                    className="sub__title"
-                    href={publisher_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Published by :{publisher}
-                  </a>
-                </p>
-              </div>
-              <div className="ingredients-card list-group col-sm-12 col-md-6">
-                <p className="list-group-item">{ingredients}</p>
-                <a
-                  href={source_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-warning w-50 mt-2"
-                >
-                  publisher website
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    };
+ 
 
     return (
-      <div>
-        {/* {this.getSelectedRecipe()} */}
-        {display()}
-      </div>
+      <React.Fragment>
+      
+ {this.props.recipe && (
+      <div className="card">
+             <div className="row mt-3 ">
+                <div className="col-12 d-flex justify-content-around align-items-center ">
+                  <h2 className="center card-title py-4 order-2">{this.props.recipe.title}</h2>
+                </div>
+              </div>
+
+              <div className="row my-3 d-flex">
+               <div className="col-sm-12 col-md-6">
+                 <img
+                   src={this.props.recipe.image_url}
+                   alt={this.props.recipe.title}
+                   className="responsive-img rounded w-55"
+                   style={{
+                    width: "15.63rem",
+                    height: "15.63rem"
+                   }}
+                 />
+                 <p>
+                   <a
+                     className="sub__title"
+                     href={this.props.recipe.publisher_url}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                   >
+                     Published by :{this.props.recipe.publisher}
+                   </a>
+                 </p>
+               </div>
+
+               <div className="ingredients-card list-group col-sm-12 col-md-6">
+               <p className="list-group-item">{this.props.recipe.ingredients}</p>
+               <div className="d-flex justify-content-around align-items-center">
+               <a
+                 href={this.props.recipe.source_url}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="btn btn-warning publisher mt-1"
+               >
+                 publisher website
+               </a>
+               <Button
+              selection={this.props.selection}
+              recipe={this.props.recipe}
+              favoriteSelection={this.favoriteSelection}
+              /> 
+
+                 
+             </div>
+             </div>
+          </div>
+        </div>  )}
+      </React.Fragment>
     );
   }
 }
 
-export default Recipe;
+ 
+
+const mapStateToProps= (state)=>{
+  return{  
+    recipe: state.recipe.recipe,
+    selection:state.recipe.selection,
+   
+  }
+}
+
+  export default connect(mapStateToProps, {getOneRecipe, getFavoriteRecipe})(Recipe);
