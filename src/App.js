@@ -15,6 +15,8 @@ import "./App.css";
 //  TO CONNECT TO REDUX STORE 
 import { connect } from "react-redux";
 
+import PropTypes from 'prop-types';
+
 class App extends Component {
   state ={
      sideNavOpen: false,
@@ -106,6 +108,13 @@ if(this.state.sideNavOpen){
     );
   }
   }
+
+ App.propTypes = {
+  sideNavOpen: PropTypes.bool,
+  recipe: PropTypes.object,
+  selection: PropTypes.array,
+  };
+
 
   const mapStateToProps= (state)=>{
     return{  

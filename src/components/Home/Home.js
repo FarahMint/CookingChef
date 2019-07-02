@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
   import showcase from "../../showcase.jpeg";
 
  import { Link } from "react-router-dom";
@@ -42,8 +44,6 @@ import React, { Component } from "react";
 
   const { recipes } = this.props.recipes;
  
-//  const { search } = this.state;
-    // console.log(this.props);
     return (
      
       <React.Fragment>
@@ -111,6 +111,13 @@ import React, { Component } from "react";
     );
   }
 }
+
+Home.propTypes = {
+  getRecipes:  PropTypes.func,
+  recipes: PropTypes.array,
+    };
+
+
 
 const mapStateToProps= (state)=>{
 

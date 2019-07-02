@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
  import Button from "./Button";
 
 
@@ -86,7 +88,14 @@ class Recipe extends Component {
   }
 }
 
- 
+Recipe.propTypes = {
+  getOneRecipe:  PropTypes.func,
+  getFavoriteRecipe:  PropTypes.func,
+  recipe: PropTypes.object,
+  selection: PropTypes.array,
+  };
+
+
 
 const mapStateToProps= (state)=>{
   return{  

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { removeFavorite} from "../../store/actions/RecipeAction";
@@ -61,7 +63,11 @@ const FavoriteSelection=(props)=> {
    </div>
     </React.Fragment>
     )}
- 
+
+   FavoriteSelection.propTypes = {
+    removeFavorite:  PropTypes.func,
+      selection: PropTypes.array,
+      };
 
 const mapStateToProps= (state)=>{
   return{  

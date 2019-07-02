@@ -5,6 +5,8 @@ import {getSearch} from "../../store/actions/RecipeAction"
 
 import "../../App.css";
 
+import PropTypes from 'prop-types';
+
 class Search extends Component {
 
   state={
@@ -61,6 +63,12 @@ this.props.position();
   }
 }
  
+Search.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleChange:  PropTypes.func,
+  getSearch:  PropTypes.func,  
+  search: PropTypes.string
+  };
 
  
   export default connect(null, {getSearch})(Search);
