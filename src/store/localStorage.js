@@ -10,6 +10,7 @@ export const loadState = () => {
       }
       return JSON.parse(serializedState);
     } catch (err) {
+      console.log(err);
       return undefined;
     }
   };
@@ -18,7 +19,8 @@ export const loadState = () => {
     try {
       const serializedState = JSON.stringify(state);
       localStorage.setItem('state', serializedState);
-    } catch {
+    } catch(err) {
       // ignore write errors
+      console.log(err);
     }
   };
