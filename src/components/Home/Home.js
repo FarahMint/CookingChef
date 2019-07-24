@@ -34,7 +34,7 @@ import PropTypes from 'prop-types';
       height: "70vh",
 
       backgroundImage:
-        "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(" +
+        "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(" +
         showcase +
         ")",
       backgroundSize: "cover",
